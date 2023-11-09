@@ -36,42 +36,63 @@
 // Output: "/home/foo"
 // Explanation: In the canonical path, multiple consecutive slashes are replaced by a single one.
 
+// path = "/a/./b/../../c/"
+// /a/b/c 
+// Use Testcase
+// Output
+// "/a////b//////c"
+// Expected
+// "/c"
 
 #include<iostream>
 #include<string>
 #include<stack>
 using namespace std;
-int main(){
-    string s;
-    cout<<"enter string : ";
-    cin>>s;
-    int initial=0,i=0;
+
+string simplifypath(string s){
+    int i,j=0;
     stack<char> st;
-    // Input: path = "/home//foo/"
-    // Output: "/home/foo"
-    for(char ch : s){
-        if(i==s.size()){
-            break;
+    st.push('/');
+    int c=0;
+    for(i=1;i<s.size();i++){
+        if(s[i]=='/'){
+            if(i==s.size()-1){
+                break;
+            }
+            if(s[i-1]=='/'){
+                i=i;
+            }
+            else{
+                st.push(s[i]);
+            }
         }
-        if(s[initial]!='/'){
-            cout<<"wrong file path \n";
-            break;
-        }  
-        st.push(ch);
-        char top = st.top();
-        if(ch=='/' && top=='/'){
-            continue;
-        } 
-        // if(ch=='/'){
-        //     st.push(ch);
-        // }
-        i++;
+        else if(s[i]=='.'){
+            if(s[i+1]=='.'){
+                // while(st.top()!='/'){
+                //     st.pop();
+                // }
+                 
+            }
+            else{
+                i=i;
+            }
+        }
+        else{
+            st.push(s[i]);
+        }
     }
-    while (!st.empty())
-    {
-        char ch1 = st.top();
-        cout<<ch1;
+    
+    while(!st.empty()){
+        char ch = st.top();
+        cout<<ch;
         st.pop();
     }
+}
+
+int main(){
+    string s="/a/./b/../../c/"; // -> /a/b/.. -> /a/. -> "empty stack" -> /c
+    // string s="/home///////foo//////sdfsd";
+    // string s="/../";
+    simplifypath(s);
     
 }
