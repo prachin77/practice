@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class node{
@@ -6,7 +7,71 @@ class node{
         node* left;
         node* right;
         int data;
+};
+
+bool isValidBST(node* root) {
+    bool flag = false;
+    if(root==NULL){
+        return false;
+    }
+    if(root->left==NULL && root->right==NULL){
+        flag=true;
+    }
+    queue<node*> q;
+    q.push(root);
+    while(!q.empty()){
+        node* tmp = q.front();
+        q.pop();
+        if(tmp->left && tmp->left->data >= tmp->data){
+            cout<<"-1\n";
+            return flag;
+            break;
+        }
+        if(tmp->right && tmp->right->data <= tmp->data){
+            cout<<"-1\n";
+            return flag;
+            break;
+        }
+        // else{
+            if(tmp->left){
+                flag = true;
+                q.push(tmp->left);
+            }
+            if(tmp->right){
+                flag = true;
+                q.push(tmp->right);
+            }
+        // }
+    }
+    if(flag!=false){
+        // cout<<"flag is true ";
+        return  flag;
+    }
+    else{
+        // cout<<"flag is false ";
+        return flag ;
+    }
+    
 }
+
+
+// 2 1 3
+
+// void tra(node* root){
+//     queue<node*> q;
+//     q.push(root);
+//     while(!q.empty()){
+//         node* tmp = q.front();
+//         q.pop();
+//         cout<<tmp->data<<" ";
+//         if(tmp->left){
+//             q.push(tmp->left);
+//         }
+//         if(tmp->right){
+//             q.push(tmp->right);
+//         }
+//     }
+// }
 
 node* tree(){
     int rootele;
@@ -17,10 +82,16 @@ node* tree(){
     }
 
     node* nn = new node;
-    nn->
-
+    nn->data = rootele;
+    cout<<"element at left of root data "<<nn->data<<endl;
+    nn->left=tree();
+    cout<<"element at right of root data "<<nn->data<<endl;
+    nn->right=tree();
+ 
 }
 
 int main(){
     node* root = tree();
+    // tra(root);
+    isValidBST(root);
 }
