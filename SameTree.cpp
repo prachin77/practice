@@ -11,36 +11,43 @@ class node{
 
 bool symmetry(node* root1,node* root2){
     bool flag = true;
-    queue<node*> q1;
-    q1.push(root1);
-    queue<node*> q2;
-    q2.push(root2);
-
-    while(!q1.empty() && !q2.empty() && flag!=false){
-        node* tmp1 = q1.front();
-        node* tmp2 = q2.front();
-        q1.pop();
-        q2.pop();
-        if(tmp1->left && tmp2->left){
-            if(tmp1->left == tmp2->left){
-                q1.push(tmp1->left);
-                q2.push(tmp2->left);
-            }
-        }
-        else if(tmp1->left && !tmp2->left){
-            flag=false;
-        }
-        if(tmp1->right && tmp2->right){
-            if(tmp1->right == tmp2->right){
-                q1.push(tmp1->right);
-                q2.push(tmp2->right);
-            }
-        }
-        else if(tmp1->right && !tmp2->right){
-            flag=false;
-        }
+    if(root1==NULL || root2==NULL){
+        flag = false;
     }
-    return flag;
+    else{
+        queue<node*> q1;
+        q1.push(root1);
+        queue<node*> q2;
+        q2.push(root2);
+        while(!q1.empty() && !q2.empty() && flag!=false){
+            node* tmp1 = q1.front();
+            node* tmp2 = q2.front();
+            q1.pop();
+            q2.pop();
+            if(tmp1->left && tmp2->left){
+                if(tmp1->left == tmp2->left){
+                    q1.push(tmp1->left);
+                    q2.push(tmp2->left);
+                }
+            }
+            else if(tmp1->left && !tmp2->left){
+                flag=false;
+            }
+            if(tmp1->right && tmp2->right){
+                if(tmp1->right == tmp2->right){
+                    q1.push(tmp1->right);
+                    q2.push(tmp2->right);
+                }
+            }
+            else if(tmp1->right && !tmp2->right){
+                flag=false;
+            }
+        }
+        return flag;
+    }
+    
+
+    
 }
 
 void tra1(node* root1){
