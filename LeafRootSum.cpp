@@ -1,4 +1,6 @@
 // https://leetcode.com/problems/sum-root-to-leaf-numbers/
+// hello guys
+
 
 #include<iostream>
 #include<queue>
@@ -59,7 +61,7 @@ node* tree(){
     cout<<"element at right of root data "<<nn->data<<endl;
     nn->right=tree();
     
-    // return nn;
+    return nn;
 }
 
 int main(){
