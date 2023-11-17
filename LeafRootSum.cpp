@@ -2,6 +2,8 @@
 
 #include<iostream>
 #include<queue>
+#include<list>
+#include<string>
 using namespace std;
 
 class node{
@@ -11,33 +13,35 @@ class node{
         int data;
 };
 
-void tra(){
-    queue<node*> q;
-    
-}
 
-void leafnode(node* root){
-	// cout<<"\n\nleaf node search\n";
-	queue<node*> q;
-	q.push(root);
+void leafnode(node* root, list<node*>& l, int& ans){
+    if (!root) {
+        return;
+    }
 
-    queue<int> q1;
-	while(!q.empty()){
-		node* tmp=q.front();
-		q.pop();	
-//		cout<<tmp->a<<endl;
-		if(tmp->left==NULL && tmp->right==NULL){
-			cout<<tmp->data<<" is leaf node\n";
-		}
-		else{
-			if(tmp->left){
-			q.push(tmp->left);
-			}
-			if(tmp->right){
-				q.push(tmp->right);
-			}	
-		}
-	}
+    // list<node*> l;
+    list<node*> :: iterator it;
+    l.push_back(root);
+    string s="";
+
+    if(!root->left && !root->right){
+        for(it=l.begin();it!=l.end();it++){
+            s += to_string((*it)->data);
+        }
+        ans=ans+stoi(s);
+        l.pop_back();
+        return ;
+    }
+
+    if(root->left){
+        leafnode(root->left,l,ans);
+    }
+
+    if(root->right){
+        leafnode(root->right,l,ans);
+    }
+
+    l.pop_back();
 }
 
 node* tree(){
@@ -54,10 +58,16 @@ node* tree(){
     nn->left=tree();
     cout<<"element at right of root data "<<nn->data<<endl;
     nn->right=tree();
- 
+    
+    // return nn;
 }
 
 int main(){
     node* root = tree();
-    leafnode(root);
+    list<node*> l;
+    int ans = 0;
+    leafnode(root, l, ans);
+    cout << ans << endl;
+
+    return 0;
 }
