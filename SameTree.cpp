@@ -11,10 +11,15 @@ class node{
 
 bool symmetry(node* root1, node* root2) {
     bool flag = true;
+    if (root1 == NULL && root2 == NULL) {
+            return flag; // Empty trees are considered the same
+        }
     if (root1 == NULL || root2 == NULL) {
         flag = false;
+        cout<<"flase ";
         return flag;
-    } else {
+    } 
+    else {
         queue<node*> q1;
         q1.push(root1);
         queue<node*> q2;
@@ -28,6 +33,7 @@ bool symmetry(node* root1, node* root2) {
             // Check if values are same
             if (tmp1->data != tmp2->data) {
                 flag = false;
+                cout<<"false ";
                 return flag;
                 break;
             }
