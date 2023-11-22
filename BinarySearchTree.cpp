@@ -2,12 +2,16 @@
 #include<queue>
 using namespace std;
 
+// almost done 
+
 class node{
     public:
         node* left;
         node* right;
         int data;
 };
+
+// 5,4,6,null,null,3,7
 
 bool isValidBST(node* root) {
     bool flag = false;
@@ -23,12 +27,12 @@ bool isValidBST(node* root) {
         node* tmp = q.front();
         q.pop();
         if(tmp->left && tmp->left->data >= tmp->data){
-            cout<<"-1\n";
+            cout<<"false\n";
             return flag;
             break;
         }
         if(tmp->right && tmp->right->data <= tmp->data){
-            cout<<"-1\n";
+            cout<<"false\n";
             return flag;
             break;
         }
@@ -44,14 +48,14 @@ bool isValidBST(node* root) {
         // }
     }
     if(flag!=false){
-        // cout<<"flag is true ";
+        cout<<"flag is true ";
         return  flag;
     }
     else{
-        // cout<<"flag is false ";
+        cout<<"flag is false ";
         return flag ;
     }
-    
+    // return flag;
 }
 
 

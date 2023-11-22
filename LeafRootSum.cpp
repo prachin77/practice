@@ -17,6 +17,7 @@ class node{
 
 
 void leafnode(node* root, list<node*>& l, int& ans){
+    
     if (!root) {
         return;
     }
