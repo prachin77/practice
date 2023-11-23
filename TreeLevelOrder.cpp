@@ -15,19 +15,27 @@ void levelorder(node* root,int c){
     cout<<"level "<<c<<" -> ";
     cout<<root->data<<" ";
     // map<int,list<int> > m;
+    // if(root->left){
+    //     c++;
+    //     levelorder(root->left,c);
+    // }
+    // if(root->right){
+    //     c++;
+    //     levelorder(root->right,c);
+    // } 
     if(root->left){
         c++;
         levelorder(root->left,c);
     }
-    if(root->right){
-        c++;
-        levelorder(root->right,c);
-    } 
-    // else {
-    //     c--;
-    //     return;
-    // }
-    
+    else if(!root->left){
+        if(root->right){
+            c++;
+            levelorder(root->right,c);
+        }
+        else {
+            return;
+        }
+    }
     
 }
 
