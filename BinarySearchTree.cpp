@@ -36,16 +36,14 @@ bool isValidBST(node* root) {
             return flag;
             break;
         }
-        // else{
-            if(tmp->left){
-                flag = true;
-                q.push(tmp->left);
-            }
-            if(tmp->right){
-                flag = true;
-                q.push(tmp->right);
-            }
-        // }
+        if(tmp->left){
+            flag = true;
+            q.push(tmp->left);
+        }
+        if(tmp->right){
+            flag = true;
+            q.push(tmp->right);
+        }
     }
     if(flag!=false){
         cout<<"flag is true ";

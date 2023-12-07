@@ -8,36 +8,74 @@ class node{
         int data;
 };
 
-void levelorder(node* root,int c){
-    if(root==NULL){
-        return;
-    }
-    cout<<"level "<<c<<" -> ";
-    cout<<root->data<<" ";
-    // map<int,list<int> > m;
-    // if(root->left){
-    //     c++;
-    //     levelorder(root->left,c);
-    // }
-    // if(root->right){
-    //     c++;
-    //     levelorder(root->right,c);
-    // } 
-    if(root->left){
-        c++;
-        levelorder(root->left,c);
-    }
-    else if(!root->left){
-        if(root->right){
-            c++;
-            levelorder(root->right,c);
-        }
-        else {
-            return;
-        }
-    }
+
+// void levelorder(node* root, int c,map<int, list<node*>>& m) {
+//     bool flag = true ;
     
+    // if (root == NULL) {
+    //     c--;
+    //     return;
+    // }
+
+    // m[c].push_back(root);
+
+    // cout << "level " << c << " -> ";
+    // cout << root->data << " ";
+    // cout << endl;
+
+    // if (root->left) {
+    //     levelorder(root->left, c + 1,m);
+    // }
+
+    // if (root->right) {
+    //     levelorder(root->right, c + 1,m);
+    // }
+// }
+
+
+void levelorder(node* root, int c, map<int, list<node*>>& m) {
+    bool flag = true;
+    if(root==NULL){
+        // return false;
+        return ;
+    }
+    if(root->left==NULL && root->right==NULL){
+        flag;
+    }
+    queue<node*> q;
+    q.push(root);
+    while(!q.empty() || flag!=false){
+        node* tmp = q.front();
+        q.pop();
+        if(tmp->left && tmp->left->data >= tmp->data){
+            // cout<<"false\n";
+            // return flag;
+            flag=false;
+            break;
+        }
+        if(tmp->right && tmp->right->data <= tmp->data){
+            // cout<<"false\n";
+            // return flag;
+            flag=false;
+            break;
+        }
+        m[c].push_back(root);
+        cout << "level " << c << " -> ";
+        cout << root->data << " ";
+        cout << endl;
+
+        if (root->left) {
+            levelorder(root->left, c + 1,m);
+        }
+
+        if (root->right) {
+            levelorder(root->right, c + 1,m);
+        }
+
+    }
 }
+
+
 
 node* tree(){
     int rootele;
@@ -59,6 +97,15 @@ node* tree(){
 int main(){
     node* root = tree();
     int c=1;
-    levelorder(root,c);
+    map<int, list<node*>> m;
+    levelorder(root, c, m);
+    for (map<int, list<node*>>::iterator mit = m.begin(); mit != m.end(); mit++) {
+        cout << mit->first << " -> ";
 
+        for (list<node*>::iterator lit = mit->second.begin(); lit != mit->second.end(); lit++) {
+            cout << (*lit)->data << " ";
+        }
+
+        cout << endl;
+    }
 }
