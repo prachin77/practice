@@ -4,6 +4,8 @@ int main(){
     int arr[5]={5,4,3,2,1};
     int i,j;
     int tmp=0,tmp1=0;
+
+    // 5 4 3 2 1
     for(i=0;i<5;i++){
         tmp=i;
         for(j=i+1;j<5;j++){

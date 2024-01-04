@@ -4,7 +4,6 @@ using namespace std;
 void bsright(int search, int arr[],int left,int right);
 void bsleft(int search, int arr[],int left,int right);
 
-// 1 2 3 4 (5) 6 [7] 8 9 10 11 12 13
 
 void bsleft(int search,int arr[],int left,int right){
     int mid=(left+right)/2;
@@ -42,14 +41,6 @@ int main(){
     // cout<<"array size = ";
     // cin>>n;
     int arr[]={1,2,3,4,5,6,7,8,9,10};
-    // int i,j;
-    // for(i=0;i<n;i++){
-    //     int ele;
-    //     cout<<"array element : ";
-    //     cin>>ele;
-    //     arr[i]=ele;
-    // } 
-    // int mid=(0+(n-1))/2;
     int search;
     cout<<"search element in array = ";
     cin>>search;

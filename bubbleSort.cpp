@@ -1,3 +1,5 @@
+// normal sorting by applying 2 for loops 
+
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
