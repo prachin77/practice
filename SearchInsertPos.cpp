@@ -9,7 +9,7 @@ class Solution{
             vector<int> :: iterator it;
             for(it=nums.begin();it!=nums.end();it++){
                 if(target == *it){
-                    ans = c;
+                       ans = c;
                     break;
                 }
                 if(target > *it){
